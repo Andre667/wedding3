@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Свадьба Андрея и Саши</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --glass-bg: rgba(255, 255, 255, 0.65);
+            --glass-border: rgba(255, 255, 255, 0.8);
+            --text-dark: #1f2937;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text-dark);
+            overflow-x: hidden;
+            background-color: #fdfbfb;
+        }
+
+        h1, h2, h3, .serif {
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        /* Сложный анимированный фон */
+        .bg-animated {
+            position: fixed;
+            inset: 0;
+            z-index: -2;
+            background: linear-gradient(-45deg, #FF9A9E, #FECFEF, #DCEDC1, #A8E6CF);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Парящие размытые круги для глубины */
+        .blob {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: -1;
+            opacity: 0.7;
+            animation: float 10s ease-in-out infinite;
+        }
+        .blob-1 { top: -10%; left: -10%; width: 400px; height: 400px; background: #FFD3B6; }
+        .blob-2 { top: 40%; right: -10%; width: 500px; height: 500px; background: #FFAAA5; animation-delay: -3s; }
+        .blob-3 { bottom: -10%; left: 20%; width: 600px; height: 600px; background: #96E6A1; animation-delay: -6s; }
+
+        @keyframes float {
+            0% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(30px) scale(1.05); }
+            100% { transform: translateY(0) scale(1); }
+        }
+
+        /* Глассморфизм (эффект матового стекла) */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+            border-radius: 2rem;
+        }
+
+        /* Градиентный текст */
+        .text-gradient {
+            background: linear-gradient(to right, #BE123C, #D97706);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        /* Маска в виде сердца для фото */
+        .heart-glow {
+            filter: drop-shadow(0 15px 25px rgba(225, 29, 72, 0.4));
+            margin: 2rem auto;
+            transition: transform 0.3s ease;
+        }
+        .heart-glow:hover {
+            transform: scale(1.05);
+        }
+        .heart-shape {
+            /* Используем SVG маску для создания точного сердца */
+            -webkit-mask-image: url("data:image/svg+xml;utf8,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z' fill='black'/%3E%3C/svg%3E");
+            -webkit-mask-size: contain;
+            -webkit-mask-position: center;
+            -webkit-mask-repeat: no-repeat;
+            mask-image: url("data:image/svg+xml;utf8,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z' fill='black'/%3E%3C/svg%3E");
+            mask-size: contain;
+            mask-position: center;
+            mask-repeat: no-repeat;
+            background: #fff;
+        }
+        
+        /* Выравнивание фотографий внутри половинок сердца */
+        .img-left, .img-right {
+            width: 50%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .img-left { object-position: center 20%; }
+        /* Если фото Саши всё ещё перевёрнуто, можно раскомментировать строку ниже: */
+        /* .img-right { transform: rotate(90deg) scale(1.5); } */
+
+        /* Анимации при прокрутке */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px) scale(0.95);
+            transition: all 0.9s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        /* Кастомный таймлайн */
+        .timeline-line::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(to bottom, #10B981, #F59E0B, #E11D48);
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        @media (max-width: 768px) {
+            .timeline-line::before { left: 24px; }
+        }
+
+        .timeline-dot {
+            background: white;
+            box-shadow: 0 0 0 4px rgba(255,255,255,0.5), 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        /* Цвета дресс-кода */
+        .color-circle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: inline-block;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            border: 2px solid white;
+            transition: transform 0.3s;
+        }
+        .color-circle:hover { transform: translateY(-5px) scale(1.1); }
+    </style>
+</head>
+<body class="antialiased selection:bg-rose-200 selection:text-rose-900">
+
+    <!-- Сложные анимированные фоны -->
+    <div class="bg-animated"></div>
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+
+    <!-- Главный экран -->
+    <header class="min-h-screen flex flex-col items-center justify-center text-center p-6 relative">
+        <div class="reveal glass-card p-8 md:p-12 mb-8 mt-10 w-full max-w-4xl mx-auto">
+            <p class="text-sm md:text-base tracking-[0.4em] uppercase mb-4 font-bold text-rose-600">Приглашаем на свадьбу</p>
+            <h1 class="text-6xl md:text-8xl mb-4 font-bold text-gradient leading-tight py-2">Андрей & Саша</h1>
+            <p class="text-2xl md:text-3xl serif italic text-gray-800">11 июля 2026 года</p>
+        </div>
+
+        <!-- Детские фотографии в едином сердце -->
+        <div class="reveal delay-200 z-10 w-full">
+            <div class="heart-glow w-64 h-64 md:w-96 md:h-96">
+                <div class="heart-shape w-full h-full flex relative overflow-hidden group">
+                    <!-- Разделительная линия между фото (опционально, для стиля) -->
+                    <div class="absolute inset-y-0 left-1/2 w-1.5 bg-white/80 z-10 transform -translate-x-1/2 mix-blend-overlay"></div>
+                    
+                    <!-- Фото Андрея (Левая половина) -->
+                    <img src="photo_2026-04-01 18.44.33.jpeg" alt="Андрей" class="img-left transition-transform duration-700 group-hover:scale-110 group-hover:rotate-1">
+                    
+                    <!-- Фото Саши (Правая половина) -->
+                    <img src="Gemini_Generated_Image_lf1ranlf1ranlf1r.jpg" alt="Саша" class="img-right transition-transform duration-700 group-hover:scale-110 group-hover:-rotate-1">
+                </div>
+            </div>
+            <div class="flex justify-center gap-16 md:gap-32 mt-2 serif italic text-xl md:text-2xl font-bold text-gray-800">
+                <span>Андрей</span>
+                <span>Саша</span>
+            </div>
+        </div>
+
+        <!-- Иконка скролла -->
+        <div class="absolute bottom-6 animate-bounce text-rose-600 bg-white/50 p-3 rounded-full backdrop-blur-sm">
+            <i data-lucide="arrow-down-heart" class="w-8 h-8"></i>
+        </div>
+    </header>
+
+    <!-- Пригласительный текст -->
+    <section class="py-16 px-6 max-w-4xl mx-auto text-center reveal">
+        <div class="glass-card p-10 md:p-16">
+            <h2 class="text-4xl md:text-5xl mb-8 font-bold text-gradient">Дорогие родные и друзья!</h2>
+            <p class="text-xl md:text-2xl leading-relaxed font-medium mb-6">
+                В нашей жизни предстоит очень важное и яркое событие — наша свадьба! 
+            </p>
+            <p class="text-lg md:text-xl leading-relaxed text-gray-800 mb-6">
+                Мы верим, что этот день будет по-настоящему особенным, полным любви, смеха и танцев. И мы безумно хотим разделить наше счастье с самыми близкими.
+            </p>
+            <p class="text-2xl serif italic font-bold text-emerald-700 mt-8">
+                Будем счастливы видеть вас на нашем празднике!
+            </p>
+        </div>
+    </section>
+
+    <!-- Место проведения -->
+    <section class="py-16 px-6 reveal">
+        <div class="max-w-4xl mx-auto text-center glass-card p-10 md:p-16 relative overflow-hidden">
+            <!-- Декоративный элемент фона -->
+            <div class="absolute -right-20 -top-20 opacity-10">
+                <i data-lucide="sun" class="w-64 h-64 text-yellow-500"></i>
+            </div>
+            
+            <i data-lucide="map-pin" class="w-14 h-14 mx-auto text-emerald-600 mb-6 relative z-10"></i>
+            <h2 class="text-4xl md:text-5xl font-bold mb-4 text-gray-900 relative z-10">Место проведения</h2>
+            <p class="text-3xl md:text-4xl serif italic text-emerald-700 font-bold mb-4 relative z-10">ЭкоФерма ВДНХ</p>
+            <p class="text-xl text-gray-700 relative z-10">Много свежего воздуха, ярких красок природы и невероятно уютная атмосфера!</p>
+        </div>
+    </section>
+
+    <!-- Программа дня (Тайминг) -->
+    <section class="py-20 px-6 max-w-4xl mx-auto relative reveal">
+        <div class="glass-card p-6 md:p-16">
+            <h2 class="text-4xl md:text-5xl text-center font-bold text-gradient mb-16">Программа дня</h2>
+            
+            <div class="relative timeline-line mt-10">
+                <!-- 17:00 -->
+                <div class="flex flex-col md:flex-row items-center justify-between mb-16 w-full reveal">
+                    <div class="order-2 md:order-1 w-full md:w-5/12 text-left md:text-right px-12 md:px-6 mt-4 md:mt-0">
+                        <h3 class="text-2xl md:text-3xl font-bold text-gray-900 mb-2">Сбор гостей</h3>
+                        <p class="text-gray-700 text-lg">Встречаемся на площадке, обнимаемся, делаем первые яркие кадры и готовимся к празднику</p>
+                    </div>
+                    <div class="order-1 md:order-2 w-20 h-20 timeline-dot border-4 border-emerald-500 rounded-full flex items-center justify-center z-10 text-gray-900 text-xl font-bold absolute left-6 md:left-1/2 transform -translate-x-1/2 md:transform-none md:-translate-x-1/2 shadow-lg">
+                        17:00
+                    </div>
+                    <div class="order-3 w-full md:w-5/12 px-4 hidden md:block"></div>
+                </div>
+
+                <!-- 17:30 -->
+                <div class="flex flex-col md:flex-row items-center justify-between mb-16 w-full reveal">
+                    <div class="order-1 md:order-1 w-full md:w-5/12 px-4 hidden md:block"></div>
+                    <div class="order-1 md:order-2 w-20 h-20 timeline-dot border-4 border-yellow-500 rounded-full flex items-center justify-center z-10 text-gray-900 text-xl font-bold absolute left-6 md:left-1/2 transform -translate-x-1/2 md:transform-none md:-translate-x-1/2 shadow-lg">
+                        17:30
+                    </div>
+                    <div class="order-2 md:order-3 w-full md:w-5/12 text-left px-12 md:px-6 mt-4 md:mt-0 ml-auto md:ml-0">
+                        <h3 class="text-2xl md:text-3xl font-bold text-gray-900 mb-2">Фуршет</h3>
+                        <p class="text-gray-700 text-lg">Яркие приветственные коктейли, вкуснейшие закуски и отличное настроение</p>
+                    </div>
+                </div>
+
+                <!-- 18:00 -->
+                <div class="flex flex-col md:flex-row items-center justify-between mb-16 w-full reveal">
+                    <div class="order-2 md:order-1 w-full md:w-5/12 text-left md:text-right px-12 md:px-6 mt-4 md:mt-0">
+                        <h3 class="text-2xl md:text-3xl font-bold text-gray-900 mb-2">Основная программа</h3>
+                        <p class="text-gray-700 text-lg">Праздничный ужин, искренние тосты, трогательные моменты и взрывные эмоции</p>
+                    </div>
+                    <div class="order-1 md:order-2 w-20 h-20 timeline-dot border-4 border-rose-500 rounded-full flex items-center justify-center z-10 text-gray-900 text-xl font-bold absolute left-6 md:left-1/2 transform -translate-x-1/2 md:transform-none md:-translate-x-1/2 shadow-lg">
+                        18:00
+                    </div>
+                    <div class="order-3 w-full md:w-5/12 px-4 hidden md:block"></div>
+                </div>
+
+                <!-- 21:30 -->
+                <div class="flex flex-col md:flex-row items-center justify-between w-full reveal">
+                    <div class="order-1 md:order-1 w-full md:w-5/12 px-4 hidden md:block"></div>
+                    <div class="order-1 md:order-2 w-20 h-20 timeline-dot border-4 border-purple-500 rounded-full flex items-center justify-center z-10 text-gray-900 text-xl font-bold absolute left-6 md:left-1/2 transform -translate-x-1/2 md:transform-none md:-translate-x-1/2 shadow-lg">
+                        21:30
+                    </div>
+                    <div class="order-2 md:order-3 w-full md:w-5/12 text-left px-12 md:px-6 mt-4 md:mt-0 ml-auto md:ml-0">
+                        <h3 class="text-2xl md:text-3xl font-bold text-gray-900 mb-2">Дискотека</h3>
+                        <p class="text-gray-700 text-lg">Танцы до упаду, свадебный торт и фееричное завершение нашего дня (до 23:00)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Строгие Подарки -->
+    <section class="py-16 px-6 max-w-4xl mx-auto text-center reveal">
+        <div class="glass-card p-10 md:p-16 border-2 border-rose-300 relative overflow-hidden">
+            <!-- Элемент свечения на фоне карточки -->
+            <div class="absolute -top-10 -right-10 w-48 h-48 bg-rose-400 rounded-full filter blur-[80px] opacity-40"></div>
+            <div class="absolute -bottom-10 -left-10 w-48 h-48 bg-yellow-400 rounded-full filter blur-[80px] opacity-40"></div>
+
+            <div class="relative z-10">
+                <i data-lucide="banknote" class="w-16 h-16 mx-auto text-rose-600 mb-6 drop-shadow-md"></i>
+                <h2 class="text-5xl md:text-6xl font-bold text-rose-700 mb-8 uppercase tracking-wide">Что дарить?</h2>
+                
+                <div class="bg-white/80 p-8 rounded-2xl shadow-inner inline-block w-full text-left md:text-center">
+                    <p class="text-3xl font-bold text-gray-900 mb-6 uppercase tracking-wider text-center border-b-2 border-rose-200 pb-4">
+                        ТОЛЬКО ДЕНЬГИ!
+                    </p>
+                    <p class="text-xl md:text-2xl text-gray-800 leading-relaxed mb-4 font-medium">
+                        Мы очень вас просим воздержаться от <span class="text-rose-600 font-bold underline decoration-rose-400 decoration-4">любых вещественных подарков</span>.
+                    </p>
+                    <p class="text-lg md:text-xl text-gray-700 leading-relaxed mb-6">
+                        Пожалуйста, не дарите нам сервизы, постельное белье, бытовую технику, картины или статуэтки. Всё необходимое для быта у нас уже есть!
+                    </p>
+                    <p class="text-2xl text-emerald-700 font-bold italic serif leading-relaxed">
+                        Лучший подарок для нас — это ваш вклад в наш семейный бюджет и будущие мечты. Ждем вас с конвертами! 💌
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Дресс-код -->
+    <section class="py-16 px-6 text-center reveal">
+        <div class="max-w-4xl mx-auto glass-card p-10 md:p-16">
+            <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Дресс-код</h2>
+            <p class="text-xl text-gray-800 mb-10 font-medium">
+                Поддержите яркую и природную атмосферу ЭкоФермы!<br>
+                Будем благодарны, если вы выберете наряды в нашей цветовой палитре:
+            </p>
+            <div class="flex justify-center flex-wrap gap-6 mt-6">
+                <!-- Яркая Эко палитра -->
+                <div class="color-circle" style="background-color: #047857;" title="Изумрудный"></div>
+                <div class="color-circle" style="background-color: #84CC16;" title="Яркий салатовый"></div>
+                <div class="color-circle" style="background-color: #FBBF24;" title="Солнечный желтый"></div>
+                <div class="color-circle" style="background-color: #F43F5E;" title="Кораллово-розовый"></div>
+                <div class="color-circle" style="background-color: #FEF3C7;" title="Теплый кремовый"></div>
+            </div>
+            <p class="text-lg text-gray-600 mt-10 italic font-medium bg-white/50 inline-block px-6 py-2 rounded-full">
+                Стиль: коктейльный, яркий, элегантный (главное — ваш комфорт и готовность танцевать!).
+            </p>
+        </div>
+    </section>
+
+    <!-- RSVP Форма -->
+    <section id="rsvp" class="py-20 px-6 reveal">
+        <div class="max-w-3xl mx-auto glass-card p-10 md:p-16 shadow-2xl border-t border-white/40">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-4 text-gray-900">Ждем вашего ответа</h2>
+            <p class="text-center text-gray-700 text-lg mb-12 font-medium bg-rose-100/50 py-2 rounded-lg">
+                Пожалуйста, подтвердите свое присутствие до 1 июня 2026 года.
+            </p>
+            
+            <form id="rsvpForm" class="space-y-8 text-gray-800">
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 mb-2 uppercase tracking-wide">Имя *</label>
+                        <input type="text" id="firstName" name="firstName" required class="w-full px-5 py-4 bg-white/70 border-2 border-white focus:border-rose-400 rounded-xl focus:ring-4 focus:ring-rose-200 outline-none transition-all shadow-sm text-lg">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 mb-2 uppercase tracking-wide">Фамилия *</label>
+                        <input type="text" id="lastName" name="lastName" required class="w-full px-5 py-4 bg-white/70 border-2 border-white focus:border-rose-400 rounded-xl focus:ring-4 focus:ring-rose-200 outline-none transition-all shadow-sm text-lg">
+                    </div>
+                </div>
+
+                <div class="bg-white/50 p-6 rounded-2xl border border-white">
+                    <label class="block text-base font-bold text-gray-800 mb-4 uppercase tracking-wide">Сможете ли вы присутствовать? *</label>
+                    <div class="flex flex-col sm:flex-row gap-6">
+                        <label class="flex items-center cursor-pointer group">
+                            <input type="radio" name="attendance" value="Да, с удовольствием!" required class="w-6 h-6 text-emerald-500 bg-white border-gray-300 focus:ring-emerald-500">
+                            <span class="ml-3 text-lg font-medium group-hover:text-emerald-700 transition-colors">Да, буду зажигать!</span>
+                        </label>
+                        <label class="flex items-center cursor-pointer group">
+                            <input type="radio" name="attendance" value="К сожалению, не смогу" class="w-6 h-6 text-rose-500 bg-white border-gray-300 focus:ring-rose-500">
+                            <span class="ml-3 text-lg font-medium group-hover:text-rose-700 transition-colors">К сожалению, пропущу</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 mb-2 uppercase tracking-wide">Еда</label>
+                        <select name="food" id="food" class="w-full px-5 py-4 bg-white/70 border-2 border-white focus:border-emerald-400 rounded-xl outline-none transition-all shadow-sm text-lg cursor-pointer">
+                            <option value="Все ем">Ем всё</option>
+                            <option value="Вегетарианец">Вегетарианское меню</option>
+                            <option value="Рыба/Птица">Предпочитаю рыбу/птицу</option>
+                            <option value="Аллергия">Есть аллергия (напишу ниже)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 mb-2 uppercase tracking-wide">Напитки</label>
+                        <select name="alcohol" id="alcohol" class="w-full px-5 py-4 bg-white/70 border-2 border-white focus:border-emerald-400 rounded-xl outline-none transition-all shadow-sm text-lg cursor-pointer">
+                            <option value="Вино белое">Вино (белое)</option>
+                            <option value="Вино красное">Вино (красное)</option>
+                            <option value="Шампанское">Игристое / Шампанское</option>
+                            <option value="Крепкий алкоголь">Крепкий алкоголь</option>
+                            <option value="Безалкогольные">Соки, лимонады (не пью)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-bold text-gray-700 mb-2 uppercase tracking-wide">Пожелания / Комментарии / Аллергии</label>
+                    <textarea name="comments" id="comments" rows="3" class="w-full px-5 py-4 bg-white/70 border-2 border-white focus:border-rose-400 rounded-xl focus:ring-4 focus:ring-rose-200 outline-none transition-all shadow-sm text-lg resize-none"></textarea>
+                </div>
+
+                <button type="submit" id="submitBtn" class="w-full bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white font-bold text-xl py-5 px-6 rounded-xl transition-all shadow-lg transform hover:-translate-y-1 hover:shadow-xl uppercase tracking-wider">
+                    Отправить ответ
+                </button>
+                
+                <!-- Сообщение об успешной отправке -->
+                <div id="successMessage" class="hidden text-center text-emerald-800 font-bold text-xl mt-6 p-6 bg-emerald-100 rounded-xl border-2 border-emerald-300 shadow-inner">
+                    ✨ Спасибо! Ваш ответ успешно отправлен. Ждем встречи! ✨
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Контакты и Футер -->
+    <footer class="py-16 text-center reveal relative">
+        <div class="max-w-3xl mx-auto glass-card p-10 mt-10 mb-10">
+            <h3 class="text-3xl font-bold text-gray-900 mb-6">Остались вопросы?</h3>
+            <p class="text-xl text-gray-700 mb-8 font-medium">Свяжитесь с нами в любых мессенджерах:</p>
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-10 mb-8">
+                <a href="#" class="flex items-center gap-4 text-gray-700 hover:text-rose-600 transition-colors bg-white/60 px-6 py-3 rounded-full shadow-sm">
+                    <div class="bg-rose-100 p-3 rounded-full text-rose-600">
+                        <i data-lucide="phone" class="w-6 h-6"></i>
+                    </div>
+                    <div class="text-left">
+                        <span class="block font-bold text-lg">Андрей</span>
+                        <span class="text-base">+7 (999) 000-00-00</span>
+                    </div>
+                </a>
+                <a href="#" class="flex items-center gap-4 text-gray-700 hover:text-emerald-600 transition-colors bg-white/60 px-6 py-3 rounded-full shadow-sm">
+                    <div class="bg-emerald-100 p-3 rounded-full text-emerald-600">
+                        <i data-lucide="phone" class="w-6 h-6"></i>
+                    </div>
+                    <div class="text-left">
+                        <span class="block font-bold text-lg">Саша</span>
+                        <span class="text-base">+7 (999) 111-11-11</span>
+                    </div>
+                </a>
+            </div>
+            <p class="text-2xl font-bold text-gradient mt-12 mb-4">До встречи на нашей свадьбе! ❤️</p>
+        </div>
+    </footer>
+
+    <script>
+        // Инициализация иконок
+        lucide.createIcons();
+
+        // Анимация при скролле
+        document.addEventListener("DOMContentLoaded", function() {
+            const reveals = document.querySelectorAll(".reveal");
+
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("active");
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1, 
+                rootMargin: "0px 0px -50px 0px"
+            });
+
+            reveals.forEach(reveal => {
+                revealObserver.observe(reveal);
+            });
+        });
+
+        // Обработка формы
+        const form = document.getElementById('rsvpForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const successMessage = document.getElementById('successMessage');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault(); 
+            
+            const originalBtnText = submitBtn.innerHTML;
+            submitBtn.innerHTML = 'Отправка... ⏳';
+            submitBtn.disabled = true;
+            submitBtn.classList.add('opacity-75', 'cursor-not-allowed');
+
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData.entries());
+
+            // Симуляция отправки (замените на fetch к Google Таблицам, когда будет готово)
+            setTimeout(() => {
+                console.log("Отправленные данные:", data);
+                form.reset();
+                submitBtn.style.display = 'none';
+                successMessage.classList.remove('hidden');
+                
+                // Плавная прокрутка к сообщению об успехе
+                successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 1500);
+        });
+    </script>
+</body>
+</html>
