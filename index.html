@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Свадьба Андрея и Саши</title>
+    <title>Свадьба Андрея и Саши (АПДЕЙТ!)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -184,16 +184,28 @@
 
     <!-- Главный экран -->
     <header class="min-h-screen flex flex-col items-center justify-center text-center p-6 relative">
-        <div class="reveal glass-card p-8 md:p-12 mb-8 mt-10 w-full max-w-4xl mx-auto">
-            <p class="text-sm md:text-base tracking-[0.4em] uppercase mb-4 font-bold text-[#EF5356]">Приглашаем на свадьбу</p>
+        <div class="reveal glass-card p-8 md:p-12 mb-8 mt-10 w-full max-w-4xl mx-auto relative">
+            
+            <!-- Баннер про Апдейт -->
+            <div class="absolute -top-6 md:-top-8 left-1/2 transform -translate-x-1/2 -rotate-2 w-max max-w-[90%] z-20">
+                <div class="bg-rose-100 border-2 border-rose-400 text-rose-800 px-6 py-3 rounded-2xl shadow-xl">
+                    <p class="font-bold text-lg md:text-xl uppercase tracking-wider flex items-center gap-2 justify-center">
+                        <i data-lucide="alert-triangle" class="w-5 h-5 text-rose-500"></i>
+                        Отмена отмены! Это апдейт!
+                        <i data-lucide="alert-triangle" class="w-5 h-5 text-rose-500"></i>
+                    </p>
+                    <p class="text-sm md:text-base font-medium mt-1">Мы перенесли дату и место (да, мы такие)</p>
+                </div>
+            </div>
+
+            <p class="text-sm md:text-base tracking-[0.4em] uppercase mb-4 font-bold text-[#EF5356] mt-6">Приглашаем на свадьбу</p>
             <h1 class="text-6xl md:text-8xl mb-4 font-bold text-gradient leading-tight py-2">Андрей & Саша</h1>
-            <p class="text-2xl md:text-3xl serif italic text-gray-800">11 июля 2026 года</p>
+            <p class="text-2xl md:text-3xl serif italic text-gray-800">18 июля 2026 года</p>
+            <p class="text-lg md:text-xl font-medium text-rose-500 mt-2">(Дата обновлена!)</p>
         </div>
 
         <!-- Фотографии -->
         <div class="reveal delay-200 z-10 w-full max-w-4xl mx-auto mt-10">
-            
-            <!-- Добавленная фраза -->
             <div class="text-center mb-12 relative z-20">
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-2">Наши фоточки</h2>
                 <p class="text-lg md:text-xl text-gray-700 italic font-medium">(если вы забыли как мы выглядим)</p>
@@ -212,16 +224,19 @@
 
     <!-- Пригласительный текст -->
     <section class="py-16 px-6 max-w-4xl mx-auto text-center reveal">
-        <div class="glass-card p-10 md:p-16">
-            <h2 class="text-4xl md:text-5xl mb-8 font-bold text-gradient">Привет!</h2>
+        <div class="glass-card p-10 md:p-16 relative overflow-hidden">
+            <h2 class="text-4xl md:text-5xl mb-8 font-bold text-gradient">Привет еще раз!</h2>
             <p class="text-xl md:text-2xl leading-relaxed font-medium mb-6">
-                Не поверите, мы решили пожениться! 💍
+                Не поверите, мы всё ещё собираемся пожениться! 💍 
             </p>
             <p class="text-lg md:text-xl leading-relaxed text-gray-800 mb-6">
-                Поэтому очень хотим видеть тебя на этом всем мероприятии, будет очень клево и весело (по крайней мере мы на это надеемся) 
+                Но у нас случился небольшой сюжетный поворот: мы поменяли дату и место. Если вы уже сохранили прошлое приглашение — смело удаляйте! Мы решили, что усадьба в центре Москвы подойдет нам даже больше, чем ферма (и ехать ближе).
+            </p>
+            <p class="text-lg md:text-xl leading-relaxed text-gray-800 mb-6">
+                Мы всё так же очень хотим видеть тебя на нашем празднике, будет очень клево и весело!
             </p>
             <p class="text-2xl serif italic font-bold text-emerald-700 mt-8">
-                Приглашаем тебя на наш крутой праздник!
+                Приглашаем тебя на нашу обновленную свадьбу!
             </p>
         </div>
     </section>
@@ -239,19 +254,35 @@
                 <div class="inline-flex items-center justify-center w-16 h-16 bg-emerald-100 rounded-full mb-6 shadow-inner">
                     <i data-lucide="map-pin" class="w-8 h-8 text-[#C5C463]"></i>
                 </div>
-                <h2 class="text-4xl md:text-5xl font-bold mb-4 text-gray-900">Место проведения</h2>
-                <p class="text-3xl md:text-4xl serif italic text-[#C5C463] font-bold mb-2">ЭкоФерма ВДНХ</p>
+                <h2 class="text-4xl md:text-5xl font-bold mb-4 text-gray-900">Новая локация</h2>
+                <p class="text-3xl md:text-4xl serif italic text-[#C5C463] font-bold mb-2">Усадьба Roden</p>
                 <p class="text-lg md:text-xl font-medium text-gray-800 mb-6 flex items-start gap-2">
                     <i data-lucide="map" class="w-6 h-6 text-rose-500 flex-shrink-0 mt-1"></i>
-                    <span>г. Москва, Проспект Мира, 119, стр. 45</span>
+                    <span>г. Москва, Старосадский пер., 5/8 стр. 6<br>(м. Китай-город)</span>
                 </p>
-                <p class="text-lg md:text-xl text-gray-700 leading-relaxed mb-4">
-                    Площадка классная! Нас ждет много свежего воздуха, яркие краски природы и невероятная атмосфера праздника прямо в черте города.
+                <p class="text-lg md:text-xl text-gray-700 leading-relaxed mb-6">
+                    Площадка потрясающая! Нас ждет атмосферная историческая усадьба в самом сердце Москвы с уютным закрытым двориком.
                 </p>
-                <p class="text-lg md:text-xl text-emerald-700 italic font-medium mb-8">
-                    (Не переживайте, от животных не воняет, Силкин проверил! 🐖)
-                </p>
-                <a href="https://yandex.ru/maps/?text=Москва,+Проспект+Мира,+119,+стр.+45" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-gradient-to-r from-[#C0CFE0] to-[#C5C463] text-gray-800 font-bold px-6 py-3 rounded-xl hover:shadow-lg transform hover:-translate-y-1 transition-all">
+
+                <!-- Важные предупреждения -->
+                <div class="space-y-4 mb-8">
+                    <div class="bg-white/70 p-4 rounded-xl border border-rose-200 shadow-sm flex gap-4 items-start">
+                        <i data-lucide="car" class="w-6 h-6 text-rose-500 flex-shrink-0 mt-1"></i>
+                        <div>
+                            <p class="font-bold text-gray-900">Важно про парковку:</p>
+                            <p class="text-gray-700 text-sm md:text-base">Своей парковки у усадьбы нет, а городская стоит 400 руб/час. Настоятельно рекомендуем приезжать на метро, такси или каршеринге!</p>
+                        </div>
+                    </div>
+                    <div class="bg-white/70 p-4 rounded-xl border border-gray-200 shadow-sm flex gap-4 items-start">
+                        <i data-lucide="wifi-off" class="w-6 h-6 text-gray-500 flex-shrink-0 mt-1"></i>
+                        <div>
+                            <p class="font-bold text-gray-900">Связь и интернет:</p>
+                            <p class="text-gray-700 text-sm md:text-base">В центре Москвы сейчас туго с интернетом, на площадке его почти нет, а Wi-Fi слабенький. Отличный повод отдохнуть от соцсетей!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="https://yandex.ru/maps/?text=Москва,+Старосадский+переулок,+5/8+стр.+6" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-gradient-to-r from-[#C0CFE0] to-[#C5C463] text-gray-800 font-bold px-6 py-3 rounded-xl hover:shadow-lg transform hover:-translate-y-1 transition-all">
                     <i data-lucide="navigation" class="w-5 h-5"></i>
                     <span>Открыть карту</span>
                 </a>
@@ -260,8 +291,8 @@
             <!-- Правая часть: Фотография локации -->
             <div class="w-full md:w-1/2 relative z-10">
                 <div class="relative rounded-3xl overflow-hidden shadow-2xl transform rotate-3 hover:rotate-0 transition-transform duration-500 border-4 border-white">
-                    <!-- Заглушка для фото локации. Чтобы поменять фото, просто вставь название нужной картинки в src="..." ниже -->
-                    <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="ЭкоФерма ВДНХ" class="w-full h-[300px] md:h-[400px] object-cover">
+                    <!-- Заглушка для фото локации (заменена на классическую/усадебную) -->
+                    <img src="https://images.unsplash.com/photo-1555529733-0e67056058ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Усадьба Roden" class="w-full h-[300px] md:h-[400px] object-cover">
                     
                     <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                     <div class="absolute bottom-6 left-6 right-6 flex items-center justify-between">
@@ -269,8 +300,6 @@
                         <i data-lucide="heart" class="w-8 h-8 text-rose-400 fill-current animate-pulse"></i>
                     </div>
                 </div>
-                <!-- Декоративные элементы вокруг фото -->
-                <i data-lucide="sun" class="absolute -top-8 -right-8 w-20 h-20 text-yellow-400/80 animate-[spin_12s_linear_infinite]"></i>
             </div>
         </div>
     </section>
@@ -285,7 +314,7 @@
                 <div class="flex flex-col md:flex-row items-center justify-between mb-16 w-full reveal">
                     <div class="order-2 md:order-1 w-full md:w-5/12 text-left md:text-right px-12 md:px-6 mt-4 md:mt-0">
                         <h3 class="text-2xl md:text-3xl font-bold text-gray-900 mb-2">Сбор гостей</h3>
-                        <p class="text-gray-700 text-lg">Встречаемся на площадке, обнимаемся, делаем первые яркие кадры и готовимся к празднику</p>
+                        <p class="text-gray-700 text-lg">Встречаемся во дворике усадьбы, обнимаемся, делаем первые яркие кадры и готовимся к празднику</p>
                     </div>
                     <div class="order-1 md:order-2 w-20 h-20 timeline-dot border-4 border-emerald-500 rounded-full flex items-center justify-center z-10 text-gray-900 text-xl font-bold absolute left-6 md:left-1/2 transform -translate-x-1/2 md:transform-none md:-translate-x-1/2 shadow-lg">
                         17:00
@@ -340,10 +369,7 @@
                         Самый главный подарок — это, конечно же, ваше присутствие!
                     </p>
                     <p class="text-lg md:text-xl text-gray-700 leading-relaxed mb-6">
-Если же вы захотите порадовать нас дополнительно, будем благодарны за вклад в копилку наших совместных целей и будущих путешествий!
-                    </p>
-                    <p class="text-2xl text-emerald-700 font-bold italic serif leading-relaxed mt-8">
-                    
+Были бы мы на ферме, мы бы попросили трактор, но так как мы в усадьбе... Если вы захотите порадовать нас дополнительно, будем благодарны за вклад в копилку наших совместных целей и будущих путешествий!
                     </p>
                 </div>
             </div>
@@ -357,10 +383,10 @@
             <div class="absolute bottom-0 right-0 opacity-10">
                 <img src="photo_2026-04-01 20.09.07.jpeg" class="w-64 h-64 object-cover rounded-full opacity-50" alt="Декор">
             </div>
-            <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6 relative z-10">Дресс-код</h2>
+            <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6 relative z-10">Обновленный Дресс-код</h2>
             <p class="text-xl text-gray-800 mb-10 font-medium relative z-10">
-                Чтобы фоточки получились красивыми все должны быть примерно в одной цветовой гамме. Несмотря на то, что это ферма, не стоит одеваться как дерзкий ковбой Джо (если только очень хочется)<br>
-                Будем благодарны, если ты выберешь наряд в нашей цветовой палитре:
+                Поскольку мы переместились с фермы в усадьбу, рамки стиля немного расширяются! Теперь можно прийти в более классическом (усадебном) варианте, либо остаться в ярких образах.<br><br>
+                Цветовая палитра остается прежней. Будем очень рады, если ты выберешь наряд в этих оттенках:
             </p>
             <div class="flex justify-center flex-wrap gap-6 mt-6 relative z-10">
                 <!-- Обновленная палитра -->
@@ -372,14 +398,14 @@
                 <div class="color-circle" style="background-color: #E1DACA;" title="Бежевый"></div>
             </div>
             <p class="text-lg text-gray-600 mt-10 italic font-medium bg-white/50 inline-block px-6 py-2 rounded-full relative z-10">
-                Стиль: яркий, элегантный, (главное — твой комфорт и готовность танцевать!).
+                Стиль: усадебный шик, элегантная классика или яркий кэжуал (главное — твой комфорт и готовность танцевать!).
             </p>
 
             <!-- Место для фотографий дресс-кода -->
             <div class="mt-12 relative z-10">
                 <h3 class="text-2xl font-bold text-gray-800 mb-6">Примеры образов</h3>
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    <!-- Замените ссылки в атрибуте src на ваши файлы, например: src="dress1.jpg" -->
+                    <!-- Замените ссылки в атрибуте src на ваши файлы -->
                     <div class="aspect-[3/4] rounded-2xl overflow-hidden shadow-md border-4 border-white transform transition hover:scale-105 hover:rotate-2">
                         <img src="ЖО1.jpeg" alt="Пример платья" class="w-full h-full object-cover">
                     </div>
@@ -392,7 +418,6 @@
                     <div class="aspect-[3/4] rounded-2xl overflow-hidden shadow-md border-4 border-white transform transition hover:scale-105 hover:-rotate-2">
                         <img src="ЖО4.jpeg" alt="Пример образа 2" class="w-full h-full object-cover">
                     </div>
-                    <!-- Добавленные 4 ячейки -->
                     <div class="aspect-[3/4] rounded-2xl overflow-hidden shadow-md border-4 border-white transform transition hover:scale-105 hover:-rotate-2">
                         <img src="МО1.jpeg" alt="Пример образа 3" class="w-full h-full object-cover">
                     </div>
@@ -439,7 +464,7 @@
             <div class="mt-10 bg-white/70 p-8 rounded-3xl shadow-lg border border-white relative z-10 backdrop-blur-md">
                 <div class="flex items-center justify-center gap-3 mb-4">
                     <i data-lucide="bot" class="w-8 h-8 text-[#EF5356]"></i>
-                    <h3 class="text-2xl font-bold text-gray-900">Помощь с сюрпризом для самых "креативных" гостей (Работает с VPN, перед использованием надо его включить)</h3>
+                    <h3 class="text-2xl font-bold text-gray-900">Помощь с сюрпризом для самых "креативных" (Работает с VPN)</h3>
                 </div>
                 <p class="text-gray-800 mb-6 font-medium">Если ты хочешь сделать нам сюрприз, но никак не придумаешь его, то напиши, что ты умеешь или любишь делать (например: петь, шутить, печь торты, монтировать видео):</p>
                 <div class="flex flex-col gap-4">
@@ -462,9 +487,9 @@
             <div class="absolute bottom-0 right-0 opacity-10">
                 <img src="photo_2026-04-01 20.09.10.jpeg" class="w-64 h-64 object-cover rounded-full opacity-50" alt="Декор">
             </div>
-            <h2 class="text-4xl md:text-5xl font-bold text-center mb-4 text-gray-900 relative z-10">Ждем твоего ответа</h2>
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-4 text-gray-900 relative z-10">Подтверди еще раз!</h2>
             <p class="text-center text-gray-700 text-lg mb-12 font-medium bg-rose-100/50 py-2 rounded-lg relative z-10">
-                Пожалуйста, подтверди свое присутствие до 1 июня 2026 года.
+                В связи с изменениями просим заполнить форму еще раз. Пожалуйста, подтверди свое присутствие до 1 июля 2026 года.
             </p>
             
             <form id="rsvpForm" class="space-y-8 text-gray-800 relative z-10">
@@ -481,15 +506,15 @@
                 </div>
 
                 <div class="bg-white/50 p-6 rounded-2xl border border-white">
-                    <label class="block text-base font-bold text-gray-800 mb-4 uppercase tracking-wide">Сможешь ли ты присутствовать? *</label>
+                    <label class="block text-base font-bold text-gray-800 mb-4 uppercase tracking-wide">Сможешь ли ты присутствовать 18 июля? *</label>
                     <div class="flex flex-col sm:flex-row gap-6">
                         <label class="flex items-center cursor-pointer group">
                             <input type="radio" name="attendance" value="Да, с удовольствием!" required class="w-6 h-6 text-[#C5C463] bg-white border-gray-300 focus:ring-[#C5C463]">
-                            <span class="ml-3 text-lg font-medium group-hover:text-[#9ea044] transition-colors">Да, буду зажигать!</span>
+                            <span class="ml-3 text-lg font-medium group-hover:text-[#9ea044] transition-colors">Да, новые дата и место мне подходят!</span>
                         </label>
                         <label class="flex items-center cursor-pointer group">
                             <input type="radio" name="attendance" value="К сожалению, не смогу" class="w-6 h-6 text-[#EF5356] bg-white border-gray-300 focus:ring-[#EF5356]">
-                            <span class="ml-3 text-lg font-medium group-hover:text-[#d33a3d] transition-colors">К сожалению, пропущу</span>
+                            <span class="ml-3 text-lg font-medium group-hover:text-[#d33a3d] transition-colors">Увы, новые вводные мне не по зубам :(</span>
                         </label>
                     </div>
                 </div>
@@ -521,12 +546,12 @@
                 </div>
 
                 <button type="submit" id="submitBtn" class="w-full bg-gradient-to-r from-[#C5C463] to-[#F2AF3F] hover:from-[#b3b255] hover:to-[#e3a135] text-white font-bold text-xl py-5 px-6 rounded-xl transition-all shadow-lg transform hover:-translate-y-1 hover:shadow-xl uppercase tracking-wider">
-                    Отправить ответ
+                    Отправить ответ заново
                 </button>
                 
                 <!-- Сообщение об успешной отправке -->
                 <div id="successMessage" class="hidden text-center text-[#3a3532] font-bold text-xl mt-6 p-6 bg-[#C5C463]/20 rounded-xl border-2 border-[#C5C463] shadow-inner">
-                    ✨ Спасибо! Твой ответ успешно отправлен. Ждем встречи! ✨
+                    ✨ Спасибо! Твой ответ успешно отправлен. Ждем встречи 18 июля! ✨
                 </div>
             </form>
         </div>
@@ -559,7 +584,7 @@
                     </div>
                 </a>
             </div>
-            <p class="text-2xl font-bold text-gradient mt-12 mb-4">До встречи на нашей свадьбе! ❤️</p>
+            <p class="text-2xl font-bold text-gradient mt-12 mb-4">До встречи на нашей обновленной свадьбе! ❤️</p>
         </div>
     </footer>
 
@@ -690,7 +715,7 @@
                 aiIdeaResult.innerHTML = '<div class="text-center text-gray-500 italic animate-pulse">ИИ анализирует твои таланты...</div>';
 
                 // Подготовка промпта для нейросети
-                const prompt = `Гость на свадьбе Андрея и Саши хочет сделать сюрприз. Навык/талант гостя: "${skill}". Придумай 1 максимально безумную, смешную и нестандартную идею для сюрприза. Забудь про банальщину и "деревенские" мотивы! Нужна постирония, легкий абсурд и разрыв шаблона, но так, чтобы нас не выгнали с площадки. Пиши неформально, дерзко, обращайся на "ты" и с юмором. Максимум 3-4 предложения.`;
+                const prompt = `Гость на свадьбе Андрея и Саши хочет сделать сюрприз. Навык/талант гостя: "${skill}". Придумай 1 максимально безумную, смешную и нестандартную идею для сюрприза. Забудь про банальщину! Нужна постирония, легкий абсурд и разрыв шаблона, но так, чтобы нас не выгнали с площадки (кстати площадка теперь - Усадьба Roden). Пиши неформально, дерзко, обращайся на "ты" и с юмором. Максимум 3-4 предложения.`;
                 const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
 
                 try {
